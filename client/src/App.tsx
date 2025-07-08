@@ -1,10 +1,17 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { About, Dashboard, Home, Projects, SignIn, SignUp } from './pages';
+import { Header } from './components';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter
+      future={{
+        v7_startTransition: true,
+      }}
+    >
+      <Header />
+      {/* The Header component will be displayed on all pages */}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
