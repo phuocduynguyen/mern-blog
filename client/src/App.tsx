@@ -1,15 +1,11 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './App.css';
-import { About, Dashboard, Home, Projects, SignIn, SignUp } from './pages';
-import { Header } from './components';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import './App.css'
+import { About, Dashboard, Home, Projects, SignIn, SignUp } from './pages'
+import { Header } from './components'
 
 function App() {
   return (
-    <BrowserRouter
-      future={{
-        v7_startTransition: true,
-      }}
-    >
+    <BrowserRouter>
       <Header />
       {/* The Header component will be displayed on all pages */}
       <Routes>
@@ -21,7 +17,7 @@ function App() {
         <Route path='/signup' element={<SignUp />} />
       </Routes>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App
