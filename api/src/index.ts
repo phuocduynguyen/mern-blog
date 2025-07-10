@@ -1,22 +1,19 @@
 import express from 'express'
-import mongoose from 'mongoose'
+import logger from './utils/logger'
 import 'dotenv/config'
+import connect from './utils/connect'
+import routes from './routes'
+import deserializeUser from './middleware/deserializeUser'
 
 const app = express()
 const port = process.env.PORT || 3000
+app.use(express.json())
+app.use(deserializeUser)
 
-mongoose
-  .connect(process.env.MONGO_URI || '')
-  .then(() => {
-    console.log('Connected to MongoDB')
-  })
-  .catch((err) => {
-    console.error('Error connecting to MongoDB:', err)
-  })
+app.listen(port, async () => {
+  logger.info(`App is running at http://localhost:${port}`)
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-app.listen(port, () => {
-  console.log(`Server started on port ${port}`)
+  await connect()
+
+  routes(app)
 })
