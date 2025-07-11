@@ -13,3 +13,7 @@ export async function createUserHandler(req: Request<unknown, unknown, CreateUse
     createError.InternalServerError('An error occurred while creating the user')
   }
 }
+
+export async function getCurrentUser(req: Request, res: Response) {
+  return res.send(res.locals.user)
+}
